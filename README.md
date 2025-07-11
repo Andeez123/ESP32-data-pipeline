@@ -11,7 +11,7 @@
 - [MongoDB](https://www.mongodb.com/) is chosen for its flexible structure type compared to traditional SQL databases
 - [Docker](https://www.docker.com/) to eliminate dependency issues, Docker compose allows multiple containers to be maintained and run multiple services at once
 
-![Pipeline overview](Blank diagram (5).png)
+![Pipeline overview](pipeline.jpg)
 
 Currently, this project has an ESP32 with a DHT11 sensor and a HC04 ultrasonic wired to it. In the main.cpp file, the ESP32 connects to my local WiFi network, and sends json data to a Flask server I have running locally using HTTP POST request. This json data consists of the temperature measured, distance measured, and the time of data production and the id of the sensor. 
 

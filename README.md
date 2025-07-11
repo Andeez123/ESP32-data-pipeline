@@ -4,12 +4,12 @@
 **ESP32 sensor pipeline** is a project which uses the WiFi capability of the ESP32 to send sensor data via the internet using HTTP protocols. This project aims to simulate real-life systems where embedded microcontrollers are reading data from the environment and storing that data in a database somewhere on the internet, and using APIs to query that data within the database. 
 
 ## ⚙️ Tech Stack
-- [ESP32](https://www.espressif.com/en/products/socs/esp32) chosen for its WiFi capabilities 
-- [Flask](https://flask.palletsprojects.com/en/stable/)
-- [Apache Kafka](https://kafka.apache.org/)
-- [Apache Spark](https://spark.apache.org/)
-- [MongoDB](https://www.mongodb.com/)
-- [Docker](https://www.docker.com/)
+- [ESP32](https://www.espressif.com/en/products/socs/esp32) is chosen for its WiFi capabilities 
+- [Flask](https://flask.palletsprojects.com/en/stable/) is chosen as it uses Python, which fits with the rest of the stack
+- [Apache Kafka](https://kafka.apache.org/) industry standard for handling streaming data
+- [Apache Spark](https://spark.apache.org/) industry standdard for data engineering pipelines
+- [MongoDB](https://www.mongodb.com/) is chosen for its flexible structure type compared to traditional SQL databases
+- [Docker](https://www.docker.com/) to eliminate dependency issues, Docker compose allows multiple containers to be maintained and run multiple services at once
   
 Currently, this project has an ESP32 with a DHT11 sensor and a HC04 ultrasonic wired to it. In the main.cpp file, the ESP32 connects to my local WiFi network, and sends json data to a Flask server I have running locally using HTTP POST request. This json data consists of the temperature measured, distance measured, and the time of data production and the id of the sensor. 
 

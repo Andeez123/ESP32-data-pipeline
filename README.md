@@ -10,15 +10,13 @@
 - [Apache Spark](https://spark.apache.org/)
 - [MongoDB](https://www.mongodb.com/)
 - [Docker](https://www.docker.com/)
+  
 Currently, this project has an ESP32 with a DHT11 sensor and a HC04 ultrasonic wired to it. In the main.cpp file, the ESP32 connects to my local WiFi network, and sends json data to a Flask server I have running locally using HTTP POST request. This json data consists of the temperature measured, distance measured, and the time of data production and the id of the sensor. 
 
 The Flask server is configured to run in a docker container, along with Apache Kafka, Apache Spark and MongoDB. Docker Compose is used to run and manage all these containers at once. Docker is used in this application as I ran into multiple dependencies issues while running Apache Spark, hence a container is setup to simplify this process. The Flask application streams HTTP data to Kafka, which is the passed over to Spark streaming to process the data and store it in a local instance of MongoDB.
 
 A sample GET request has been written, however this GET request is merely a sample request and will be updated in the future, to retrieve more useful data to be used, for web applications, monitoring, data science, and machine learning model purposes. These API methods are tested using [Postman API testing software](https://www.postman.com/downloads/).
 
-Sample data in MongoDB database:
-
-![image](https://github.com/Andeez123/ESP32-sensor-pipeline/blob/main/461642985-e47b5611-2400-4cd1-9cd8-dfa500859a99.png)
 
 ## ✏️ Future Plans
 Future plans include expanding the sensor array to capture more data, such as an Ultrasonic/Infrared sensor to capture distance data, Light sensors to capture brightness. As the number of sensors and data scales, Apache Kafka and Apache Spark may be used to process large volumes of data. The API methods need additional work to be able to query more useful data than the placeholder method currently setup, once the API methods have been setup correctly, a frontend will be built using React to display sensor data, along with some visualisations. Another functionality I have planned will be to host the database and the servers on a Raspberry PI, using Cloudfare services to serve my self hosted web application. 

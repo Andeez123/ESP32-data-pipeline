@@ -10,7 +10,9 @@
 - [Apache Spark](https://spark.apache.org/) industry standdard for data engineering pipelines
 - [MongoDB](https://www.mongodb.com/) is chosen for its flexible structure type compared to traditional SQL databases
 - [Docker](https://www.docker.com/) to eliminate dependency issues, Docker compose allows multiple containers to be maintained and run multiple services at once
-  
+
+![image description](relative/path/in/repository/to/image.svg)
+
 Currently, this project has an ESP32 with a DHT11 sensor and a HC04 ultrasonic wired to it. In the main.cpp file, the ESP32 connects to my local WiFi network, and sends json data to a Flask server I have running locally using HTTP POST request. This json data consists of the temperature measured, distance measured, and the time of data production and the id of the sensor. 
 
 The Flask server is configured to run in a docker container, along with Apache Kafka, Apache Spark and MongoDB. Docker Compose is used to run and manage all these containers at once. Docker is used in this application as I ran into multiple dependencies issues while running Apache Spark, hence a container is setup to simplify this process. The Flask application streams HTTP data to Kafka, which is the passed over to Spark streaming to process the data and store it in a local instance of MongoDB.

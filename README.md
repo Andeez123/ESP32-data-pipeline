@@ -4,7 +4,7 @@
 **ESP32 sensor pipeline** is a project which uses the WiFi capability of the ESP32 to send sensor data via the internet using HTTP protocols. This project aims to simulate real-life systems where embedded microcontrollers are reading data from the environment and storing that data in a database somewhere on the internet, and using APIs to query that data within the database. 
 
 ## ⚙️ Tech Stack
-- [ESP32](https://www.espressif.com/en/products/socs/esp32)
+- [ESP32](https://www.espressif.com/en/products/socs/esp32) chosen for its WiFi capabilities 
 - [Flask](https://flask.palletsprojects.com/en/stable/)
 - [Apache Kafka](https://kafka.apache.org/)
 - [Apache Spark](https://spark.apache.org/)

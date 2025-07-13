@@ -10,6 +10,7 @@ IP = os.getenv("IPV4")
 
 topic = "Temp-Dist"
 
+# create a spark session
 spark = (
     SparkSession.builder
         .master('local[*]')
@@ -18,12 +19,14 @@ spark = (
         .getOrCreate()
 )
 
+# schema of json packets from kafka
 schema = StructType() \
     .add("Sensor", StringType()) \
     .add("Temperature", FloatType()) \
     .add("Distance", FloatType()) \
     .add("Time", StringType())
 
+# read stream from kafka
 kafka_df = (
     spark.readStream
     .format("kafka")
@@ -32,9 +35,10 @@ kafka_df = (
     .load()
 )
 
+# casts the binary values from kafka as a json string, then parses the json to a column named "data" using the defined schema
 temp_dist_df = kafka_df.selectExpr("CAST(value AS STRING)") \
     .select(from_json(col("value"), schema).alias("data")) \
-    .select("data.*")
+    .select("data.*") # unpacks the struct and creates separate columns
 
 def process_to_mongo(df: DataFrame, batch_id: int):
     client = MongoClient(IP, 27017)

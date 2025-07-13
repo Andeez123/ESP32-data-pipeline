@@ -2,15 +2,19 @@ version: "3.8"
 
 services:
   flask-api:
+    # build allows for custom docker images, using a dockerfile in this case in backend/app
     build: ./backend/app
+    # set on port 5000
     ports:
       - "5000:5000"
     env_file:
       - .env
+    # flask service depends on kafka to start, to handle streaming data
     depends_on:
       - kafka
   
   zookeeper:
+    # build from bitnami zookeeper image
     image: bitnami/zookeeper:3.8
     container_name: zookeeper
     environment:
@@ -52,6 +56,7 @@ services:
     container_name: mongodb_container
     ports:
       - "27017:27017"
+    # volumes attaches persistent storage to mongodb containe, ensuring the data remains accessible 
     volumes:
       - "C:/Users/Andee Chong/Documents/Monash (Personal)/esp32-flask/mongo_data:/data/db"
     depends_on:

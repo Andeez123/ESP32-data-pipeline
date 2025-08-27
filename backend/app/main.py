@@ -46,10 +46,10 @@ def receive_data():
         data = request.get_json()
         print(data)
         sensor_A.publish_message(data)
-        return "Data received", 200
+        return jsonify({"message": "Data received"}), 200
     except Exception as e:
-        print("Error updating database!")
-        return "Bad JSON", 400
+        print("Error updating database!", e)
+        return jsonify({"error": "Bad JSON"}), 400
     
 
 # @app.get("/query")
